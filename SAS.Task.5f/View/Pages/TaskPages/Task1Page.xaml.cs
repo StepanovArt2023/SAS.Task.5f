@@ -1,0 +1,58 @@
+﻿using SAS.Task._5f.Core;
+using System;
+using System.Reflection.Emit;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace SAS.Task._5f.View.Pages.TaskPages
+{
+    /// <summary>
+    /// Логика взаимодействия для Task1Page.xaml
+    /// </summary>
+    public partial class Task1Page : Page
+    {
+        public Task1Page()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnTask1_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string A = (TbA.Text);
+                int DecimalNumber = 0;
+
+                for (int i = 0; i < A.Length; i++) 
+                {
+                    if (A[A.Length - i - 1] == '0') continue; 
+                    DecimalNumber += (int)Math.Pow(2, i);
+                }
+                string B = Convert.ToString(DecimalNumber, 16);
+                MessageBox.Show($"{B}", "Системное сообщение",
+                         MessageBoxButton.OK,
+                         MessageBoxImage.Information);
+                TbA.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), "Системное сообщение", MessageBoxButton.OK, MessageBoxImage.Error);
+                //TestWIndow tw = new(this);
+
+            }
+
+        }
+
+        private void Btn110_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 win1 = new Window1(this);
+            win1.ShowDialog();
+        }
+
+        public void HelloWindow()
+        {
+            MessageBox.Show("Hello");
+        }
+
+    }
+}
